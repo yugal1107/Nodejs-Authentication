@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="/styles/styles.css" />
+  </head>
+  <body>
+    <div
+      class="mx-auto max-w-lg flex-col rounded-md bg-red-200 px-5 py-5 shadow-lg my-auto max-h-lg"
+    >
+      <h1 class="block mx-auto text-center text-2xl bold py-3">Login</h1>
+      <form action="/user/login" method="POST">
+        <div class="flex py-4 px-4 justify-between">
+          <label for="email">E-mail</label>
+          <input type="email" name="email" placeholder="E-mail" />
+        </div>
+        <div class="flex py-4 px-4 justify-between">
+          <label for="password">Password</label>
+          <input type="password" name="password" placeholder="Password" />
+        </div>
+        <button type="submit" class="block mx-auto my-2">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
