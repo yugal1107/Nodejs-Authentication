@@ -1,12 +1,16 @@
 import { Router } from "express";
 
-import { createUser } from "../controllers/auth-controllers.js";
-import { login } from "../controllers/auth-controllers.js";
+import { createUser, login, logout } from "../controllers/auth-controllers.js";
 
 const router = Router();
 
 router.get("/login", (req, res) => {
-  res.render("login");
+  if (req.query.registration === "success") {
+    return res.render("login", {
+      message: "Registration was successfull. Now login to continue",
+    });
+  }
+  res.render("login", { message: "" });
 });
 
 router.get("/register", (req, res) => {
@@ -15,5 +19,5 @@ router.get("/register", (req, res) => {
 
 router.post("/register", createUser);
 router.post("/login", login);
-
+router.post("/logout", logout);
 export default router;

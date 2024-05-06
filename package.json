@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build:css": "postcss public/styles/styles.css -o public/styles/styles.css"
+    "build:css": "postcss public/styles/styles.css -o public/styles/styles.css",
+    "tailwind:css": "postcss public/styles/tailwind.css -o public/styles/style.css"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +18,9 @@
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.3.2",
+    "path": "^0.12.7",
     "postcss-cli": "^11.0.0",
     "uuid": "^9.0.1"
   },

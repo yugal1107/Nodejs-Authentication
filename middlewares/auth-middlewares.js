@@ -1,13 +1,17 @@
 import { getUser } from "../controllers/auth-controllers.js";
 
-async function checkUser(req, res, next) {
+function checkUser(req, res, next) {
   try {
-    const userid = req.cookies?.uid;
-
-    if (!userid) return res.redirect("/user/login");
-    const user = getUser(userid);
-
-    if (!user) return res.redirect("/user/login");
+    const uid = req.cookies?.uid;
+    if (!uid) {
+      console.log("Cookie not found")
+      return res.redirect("/user/login");
+    }
+    const user = getUser(uid);
+    if (!user) {
+      console.log("User not found")
+      return res.redirect("/user/login");
+    }
 
     req.user = user;
     next();

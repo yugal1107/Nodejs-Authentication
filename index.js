@@ -5,6 +5,7 @@ import ejs from "ejs";
 import userRouter from "./routers/user.js";
 import cookieParser from "cookie-parser";
 import { checkUser } from "./middlewares/auth-middlewares.js";
+import path from "path";
 
 dotenv.config();
 const app = express();
@@ -18,7 +19,7 @@ app.use(express.urlencoded({ extended: true })); //To parse the form data
 app.use(cookieParser()); //To parse the cookies
 
 //Checking user
-app.use("/home" , checkUser);
+app.use("/home", checkUser);
 
 //Setting routes
 app.use("/user", userRouter);
@@ -40,12 +41,15 @@ mongoose
 const PORT = process.env.PORT || 3000;
 
 app.get("/home", (req, res) => {
-  res.render("index");
+  if (req.user) {
+    return res.render("home", { user: req.user });
+  }
+  res.render("home");
 });
 
-app.get("/" , (req , res) => {
+app.get("/", (req, res) => {
   res.redirect("/home");
-})
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

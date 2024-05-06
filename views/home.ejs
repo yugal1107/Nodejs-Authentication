@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <style>
+      /* CSS for the navbar */
+      .navbar {
+        background-color: #f1f1f1;
+        padding: 10px;
+      }
+
+      .navbar a {
+        color: black;
+        padding: 8px;
+        text-decoration: none;
+        font-size: 18px;
+      }
+
+      /* CSS for the footer */
+      .footer {
+        background-color: #f1f1f1;
+        padding: 10px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar" style="display: flex; justify-content: space-between">
+      <div>
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+
+      <a
+        id="logout"
+        style="background-color: purple; border-radius: 5px; color: white"
+        href="#"
+        >Logout</a
+      >
+    </div>
+
+    <h1>Welcome <%= user.name , "as" , user.username %></h1>
+    <p>This is the home page of my website.</p>
+
+    <div class="footer">
+      <p>&copy; 2022 My Website. All rights reserved.</p>
+    </div>
+  </body>
+  <script>
+    document
+      .getElementById("logout")
+      .addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent the default action
+
+        // Send a request to the logout route
+        fetch("/user/logout", { method: "POST" })
+          .then((response) => {
+            if (response.ok) {
+              // If the response is ok, reload the page
+              location.reload();
+            } else {
+              console.error("Logout failed");
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      });
+  </script>
+</html>
